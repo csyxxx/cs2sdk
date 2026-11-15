@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Development|x64">
+      <Configuration>Development</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Ship|x64">
+      <Configuration>Ship</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d30ae6e8-620d-42e0-b3f4-804cafe20f44}</ProjectGuid>
+    <RootNamespace>cs2sdk</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Ship|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Ship|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)project\external\phnt;$(ProjectDir)project;$(ProjectDir)dependencies\x64-windows-static\include;$(IncludePath)</IncludePath>
+    <TargetName>cs2sdk</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Ship|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)project\external\phnt;$(ProjectDir)project;$(ProjectDir)dependencies\x64-windows-static\include;$(IncludePath)</IncludePath>
+    <TargetName>cs2sdk</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>CS2SDK_EXPORTS;_WINDOWS;_USRDLL;DEV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch/pch.hpp</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <IncludeInUnityFile>false</IncludeInUnityFile>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <Optimization>Disabled</Optimization>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <EntryPointSymbol>entry</EntryPointSymbol>
+      <AdditionalDependencies>freetype.lib;Synchronization.lib;Advapi32.lib;Ole32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\x64-windows-static\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Ship|x64'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;CS2SDK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch/pch.hpp</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <IncludeInUnityFile>false</IncludeInUnityFile>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <EntryPointSymbol>entry</EntryPointSymbol>
+      <AdditionalDependencies>freetype.lib;Synchronization.lib;Advapi32.lib;Ole32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\x64-windows-static\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="project\core\features\features.cpp" />
+    <ClInclude Include="project\core\features\features.hpp" />
+    <ClInclude Include="project\core\hooks\hooks.hpp" />
+    <ClCompile Include="project\core\hooks\impl\cheat.cpp" />
+    <ClCompile Include="project\core\rendering\impl\context.cpp" />
+    <ClCompile Include="project\core\rendering\impl\fonts.cpp" />
+    <ClCompile Include="project\core\rendering\impl\menu\menu.core.cpp" />
+    <ClInclude Include="project\core\rendering\rendering.hpp" />
+    <ClInclude Include="project\core\resources\fonts\inter.hpp" />
+    <ClInclude Include="project\core\resources\fonts\pixel7.hpp" />
+    <ClInclude Include="project\core\settings.hpp" />
+    <ClCompile Include="project\core\systems\impl\bones.cpp" />
+    <ClCompile Include="project\core\systems\impl\bounds.cpp" />
+    <ClCompile Include="project\core\systems\impl\entities.cpp" />
+    <ClCompile Include="project\core\systems\impl\events.cpp" />
+    <ClCompile Include="project\core\systems\impl\frame_data.cpp" />
+    <ClCompile Include="project\core\systems\impl\hitboxes.cpp" />
+    <ClCompile Include="project\core\systems\impl\icons.cpp" />
+    <ClCompile Include="project\core\systems\impl\input.cpp" />
+    <ClCompile Include="project\core\systems\impl\input.buttons.cpp" />
+    <ClCompile Include="project\core\systems\impl\mouse_input.cpp" />
+    <ClCompile Include="project\core\systems\impl\local.cpp" />
+    <ClCompile Include="project\core\systems\impl\materials.cpp" />
+    <ClCompile Include="project\core\systems\impl\model_preview.cpp" />
+    <ClCompile Include="project\core\systems\impl\prediction.cpp" />
+    <ClCompile Include="project\core\systems\impl\schemas.cpp" />
+    <ClCompile Include="project\core\systems\impl\tracing.cpp" />
+    <ClCompile Include="project\core\systems\impl\view.cpp" />
+    <ClInclude Include="project\core\systems\systems.hpp" />
+    <ClCompile Include="project\entry.cpp" />
+    <ClInclude Include="project\external\bc7.hpp" />
+    <ClInclude Include="project\external\config.hpp" />
+    <ClInclude Include="project\external\inline-syscall\inline_syscall.hpp" />
+    <None Include="project\external\inline-syscall\inline_syscall.inl" />
+    <ClCompile Include="project\external\lz4\lz4.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="project\external\lz4\lz4.h" />
+    <ClInclude Include="project\external\nlohmann\json.hpp" />
+    <ClInclude Include="project\external\phnt\ntafd.h" />
+    <ClInclude Include="project\external\phnt\ntbcd.h" />
+    <ClInclude Include="project\external\phnt\ntd3dkmt.h" />
+    <ClInclude Include="project\external\phnt\ntdbg.h" />
+    <ClInclude Include="project\external\phnt\ntexapi.h" />
+    <ClInclude Include="project\external\phnt\ntgdi.h" />
+    <ClInclude Include="project\external\phnt\ntimage.h" />
+    <ClInclude Include="project\external\phnt\ntintsafe.h" />
+    <ClInclude Include="project\external\phnt\ntioapi.h" />
+    <ClInclude Include="project\external\phnt\ntkeapi.h" />
+    <ClInclude Include="project\external\phnt\ntldr.h" />
+    <ClInclude Include="project\external\phnt\ntlpcapi.h" />
+    <ClInclude Include="project\external\phnt\ntmisc.h" />
+    <ClInclude Include="project\external\phnt\ntmmapi.h" />
+    <ClInclude Include="project\external\phnt\ntnls.h" />
+    <ClInclude Include="project\external\phnt\ntobapi.h" />
+    <ClInclude Include="project\external\phnt\ntpebteb.h" />
+    <ClInclude Include="project\external\phnt\ntpfapi.h" />
+    <ClInclude Include="project\external\phnt\ntpnpapi.h" />
+    <ClInclude Include="project\external\phnt\ntpoapi.h" />
+    <ClInclude Include="project\external\phnt\ntpsapi.h" />
+    <ClInclude Include="project\external\phnt\ntregapi.h" />
+    <ClInclude Include="project\external\phnt\ntrtl.h" />
+    <ClInclude Include="project\external\phnt\ntsam.h" />
+    <ClInclude Include="project\external\phnt\ntseapi.h" />
+    <ClInclude Include="project\external\phnt\ntsmss.h" />
+    <ClInclude Include="project\external\phnt\ntstrsafe.h" />
+    <ClInclude Include="project\external\phnt\ntsxs.h" />
+    <ClInclude Include="project\external\phnt\nttmapi.h" />
+    <ClInclude Include="project\external\phnt\nttp.h" />
+    <ClInclude Include="project\external\phnt\nttypesafe.h" />
+    <ClInclude Include="project\external\phnt\ntuser.h" />
+    <ClInclude Include="project\external\phnt\ntwmi.h" />
+    <ClInclude Include="project\external\phnt\ntwow64.h" />
+    <ClInclude Include="project\external\phnt\ntxcapi.h" />
+    <ClInclude Include="project\external\phnt\ntzwapi.h" />
+    <ClInclude Include="project\external\phnt\phnt.h" />
+    <ClInclude Include="project\external\phnt\phnt_ntdef.h" />
+    <ClInclude Include="project\external\phnt\phnt_windows.h" />
+    <ClInclude Include="project\external\phnt\smbios.h" />
+    <ClInclude Include="project\external\phnt\subprocesstag.h" />
+    <ClInclude Include="project\external\phnt\usermgr.h" />
+    <ClInclude Include="project\external\phnt\winsta.h" />
+    <ClInclude Include="project\external\poly2d.hpp" />
+    <ClCompile Include="project\external\stackwalker\stackwalker.cpp" />
+    <ClInclude Include="project\external\stackwalker\stackwalker.hpp" />
+    <ClInclude Include="project\external\xdraw\dependencies\fonts.hpp" />
+    <ClInclude Include="project\external\xdraw\dependencies\freetype\include.hpp" />
+    <ClInclude Include="project\external\xdraw\dependencies\nanosvg\include.hpp" />
+    <ClInclude Include="project\external\xdraw\dependencies\nanosvg\x\nanosvg.h" />
+    <ClInclude Include="project\external\xdraw\dependencies\nanosvg\x\nanosvgrast.h" />
+    <ClInclude Include="project\external\xdraw\dependencies\shaders.hpp" />
+    <ClCompile Include="project\external\xdraw\xdraw.cpp" />
+    <ClInclude Include="project\external\xdraw\xdraw.hpp" />
+    <ClCompile Include="project\external\xdraw\xui\xui.cpp" />
+    <ClInclude Include="project\external\xdraw\xui\xui.hpp" />
+    <ClInclude Include="project\external\xorstr.hpp" />
+    <ClCompile Include="project\external\zydis\zydis.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="project\external\zydis\zydis.h" />
+    <ClCompile Include="project\pch\pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="project\pch\pch.hpp" />
+    <ClInclude Include="project\protection\game_addresses.hpp" />
+    <ClCompile Include="project\protection\patterns.cpp" />
+    <ClInclude Include="project\protection\patterns.hpp" />
+    <ClInclude Include="project\utilities\addresses\addresses.hpp" />
+    <ClCompile Include="project\utilities\addresses\impl\functions.cpp" />
+    <ClCompile Include="project\utilities\addresses\impl\globals.cpp" />
+    <ClCompile Include="project\utilities\addresses\impl\interfaces\engine_cvar.cpp" />
+    <ClCompile Include="project\utilities\addresses\impl\modules.cpp" />
+    <ClInclude Include="project\utilities\addresses\interfaces.hpp" />
+    <ClInclude Include="project\utilities\animation.hpp" />
+    <ClInclude Include="project\utilities\cstypes.hpp" />
+    <ClInclude Include="project\utilities\diag.hpp" />
+    <ClInclude Include="project\utilities\fnv1a.hpp" />
+    <ClInclude Include="project\utilities\game_path.hpp" />
+    <ClInclude Include="project\utilities\hooking\hooking.hpp" />
+    <ClCompile Include="project\utilities\hooking\impl\allocator.cpp" />
+    <ClCompile Include="project\utilities\hooking\impl\jmp.cpp" />
+    <ClCompile Include="project\utilities\hooking\impl\manager.cpp" />
+    <ClCompile Include="project\utilities\logging\impl\console.cpp" />
+    <ClCompile Include="project\utilities\logging\impl\popup.cpp" />
+    <ClInclude Include="project\utilities\logging\logging.hpp" />
+    <ClCompile Include="project\utilities\math\math.cpp" />
+    <ClInclude Include="project\utilities\math\math.hpp" />
+    <ClCompile Include="project\utilities\memory\memory.cpp" />
+    <ClInclude Include="project\utilities\memory\memory.hpp" />
+    <ClCompile Include="project\utilities\memory\memory.string.cpp" />
+    <ClCompile Include="project\utilities\overrides.cpp" />
+    <ClCompile Include="project\utilities\proto\proto.cpp" />
+    <ClInclude Include="project\utilities\proto\proto.hpp" />
+    <ClCompile Include="project\utilities\random\random.cpp" />
+    <ClInclude Include="project\utilities\random\random.hpp" />
+    <ClCompile Include="project\utilities\security\impl\integrity.cpp" />
+    <ClCompile Include="project\utilities\security\impl\prologues.cpp" />
+    <ClCompile Include="project\utilities\security\impl\regions.cpp" />
+    <ClInclude Include="project\utilities\security\security.hpp" />
+    <ClCompile Include="project\utilities\steam\impl\friends.cpp" />
+    <ClCompile Include="project\utilities\steam\impl\http.cpp" />
+    <ClCompile Include="project\utilities\steam\impl\user.cpp" />
+    <ClCompile Include="project\utilities\steam\impl\utils.cpp" />
+    <ClInclude Include="project\utilities\steam\steam.hpp" />
+    <ClCompile Include="project\utilities\threadpool\threadpool.cpp" />
+    <ClInclude Include="project\utilities\threadpool\threadpool.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
